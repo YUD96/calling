@@ -1,0 +1,36 @@
+on: push
+jobs:
+  phpstan:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+      - run: composer install
+      - run: ./vendor/bin/phpstan analyse --memory-limit=2G
+
+  pint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+      - run: composer install
+      - run: ./vendor/bin/pint --test
+
+  phpunit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+      - run: composer install
+      - run: touch database/testing_database.sqlite
+      - run: php artisan migrate --env=testing
+      - run: php artisan test
