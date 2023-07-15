@@ -17,8 +17,8 @@ class DatabaseSeeder extends Seeder
             ['name' => '二村'],
             ['name' => '渡邉'],
             ['name' => '平山'],
-            ['name' => 'ME']
+            ['name' => 'ME'],
         ]);
-//        PhoneCall::factory()->create();
+        //        PhoneCall::factory()->create();
     }
 }

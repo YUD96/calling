@@ -24,7 +24,7 @@ class PhoneCallFactory extends Factory
             'caller_user_id' => User::factory(),
             'receiver_user_id' => User::factory(),
             'status' => Arr::random(PhoneCallStatus::cases()),
-            'called_at' => $this->faker->dateTime
+            'called_at' => $this->faker->dateTime,
         ];
     }
 }
