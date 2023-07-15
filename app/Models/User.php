@@ -4,10 +4,18 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Ramsey\Collection\Collection;
 
+/**
+ * @property int $id
+ * @property string $name
+ * @property-read Collection<PhoneCall> $phoneCalls
+ * @property-read Collection<PhoneCall> $phoneReceives
+ */
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -42,4 +50,20 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    /**
+     * @return HasMany<PhoneCall>
+     */
+    public function phoneCalls(): HasMany
+    {
+        return $this->hasMany(PhoneCall::class, 'caller_user_id');
+    }
+
+    /**
+     * @return HasMany<PhoneCall>
+     */
+    public function phoneReceives(): HasMany
+    {
+        return $this->hasMany(PhoneCall::class, 'receiver_user_id');
+    }
 }
