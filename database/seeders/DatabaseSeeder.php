@@ -19,6 +19,5 @@ class DatabaseSeeder extends Seeder
             ['name' => '平山'],
             ['name' => 'ME'],
         ]);
-        //        PhoneCall::factory()->create();
     }
 }
