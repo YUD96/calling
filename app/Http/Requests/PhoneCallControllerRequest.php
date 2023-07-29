@@ -10,7 +10,7 @@ use Illuminate\Foundation\Http\FormRequest;
 class PhoneCallControllerRequest extends FormRequest
 {
     /**
-     * @return array<string, array<string>
+     * @return array<string, array<string>>
      */
     public function rules(): array
     {
