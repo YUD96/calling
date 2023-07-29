@@ -32,11 +32,11 @@ class PhoneCallController extends Controller
 
             return $phoneCall;
         });
-        
+
         return response()->json([
             'data' => [
-                'phone_call_id' => $phoneCall->id
-            ]
+                'phone_call_id' => $phoneCall->id,
+            ],
         ], Response::HTTP_CREATED);
     }
 
@@ -73,6 +73,4 @@ class PhoneCallController extends Controller
 
         return response()->json([], Response::HTTP_NO_CONTENT);
     }
-
-
 }

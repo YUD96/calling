@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Controllers;
+namespace Tests\Feature\Controllers\Feature\Controllers;
 
 use App\Enums\PhoneCallStatus;
 use App\Models\PhoneCall;
@@ -29,8 +29,8 @@ class PhoneCallControllerTest extends TestCase
         $receiver = User::factory()->create();
 
         // when
-        $actual = $this->postJson("/api/phone_calls", [
-            'user_id' => $receiver->id
+        $actual = $this->postJson('/api/phone_calls', [
+            'user_id' => $receiver->id,
         ]);
         // then
         $actual->assertCreated();
@@ -39,10 +39,9 @@ class PhoneCallControllerTest extends TestCase
             'caller_user_id' => $caller->id,
             'receiver_user_id' => $receiver->id,
             'status' => PhoneCallStatus::WaitingReceiver->value,
-            'called_at' => $now
+            'called_at' => $now,
         ]);
     }
-
 
     public function test_電話をキャンセルすることができる(): void
     {
@@ -61,7 +60,7 @@ class PhoneCallControllerTest extends TestCase
         $this->assertDatabaseHas(PhoneCall::class, [
             'id' => $phoneCall->id,
             'status' => PhoneCallStatus::Cancelled,
-            'finished_at' => $now
+            'finished_at' => $now,
         ]);
     }
 
@@ -83,7 +82,7 @@ class PhoneCallControllerTest extends TestCase
         $this->assertDatabaseHas(PhoneCall::class, [
             'id' => $phoneCall->id,
             'status' => PhoneCallStatus::TalkStated,
-            'talk_started_at' => $now
+            'talk_started_at' => $now,
         ]);
     }
 
@@ -106,7 +105,7 @@ class PhoneCallControllerTest extends TestCase
             'id' => $phoneCall->id,
             'status' => PhoneCallStatus::Finished,
             'finished_at' => $now,
-            'call_charge' => 100
+            'call_charge' => 100,
         ]);
     }
 }
