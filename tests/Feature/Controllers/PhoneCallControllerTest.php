@@ -80,13 +80,6 @@ class PhoneCallControllerTest extends TestCase
         // then
         $actual->assertNoContent();
 
-//        /** @var PhoneCall $latest */
-//        $latest = PhoneCall::query()->latest()->first();
-//
-//        $actual->assertJsonFragment([
-//            'phone_call_id' => $latest->id
-//        ]);
-//
         $this->assertDatabaseHas(PhoneCall::class, [
             'id' => $phoneCall->id,
             'status' => PhoneCallStatus::TalkStated,
