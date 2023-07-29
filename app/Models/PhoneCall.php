@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use App\Enums\PhoneCallStatus;
-use Carbon\Carbon;
+use Carbon\CarbonImmutable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -12,10 +12,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $id
  * @property int $caller_user_id
  * @property int $receiver_user_id
- * @property string $status
- * @property Carbon $called_at
- * @property Carbon $talk_started_at
- * @property Carbon $finished_at
+ * @property PhoneCallStatus $status
+ * @property CarbonImmutable $called_at
+ * @property CarbonImmutable $talk_started_at
+ * @property CarbonImmutable $finished_at
  * @property int $call_charge
  * @property-read User $caller
  * @property-read User $receiver
